@@ -65,14 +65,15 @@ filtered_df = df[(df['channel_name'] == selected_channel) & (df['year'] == selec
 videos_df = filtered_df[filtered_df['short'] == 0]
 shorts_df = filtered_df[filtered_df['short'] == 1]
 
-# Create two line charts, one for videos and one for shorts, with data point labels
-fig_videos = px.line(videos_df, x='published', y=selected_metric, text=videos_df['title'],
+fig_videos = px.line(videos_df, x='published', y=selected_metric,
                      title=f'Line Chart of {metric_names[selected_metric]} for Videos',
-                     labels={'published': 'Published Date', selected_metric: metric_names[selected_metric]})
+                     labels={'published': 'Published Date', selected_metric: metric_names[selected_metric]},
+                     hover_data=['title'])
 
-fig_shorts = px.line(shorts_df, x='published', y=selected_metric, text=shorts_df['title'],
+fig_shorts = px.line(shorts_df, x='published', y=selected_metric,
                      title=f'Line Chart of {metric_names[selected_metric]} for Shorts',
-                     labels={'published': 'Published Date', selected_metric: metric_names[selected_metric]})
+                     labels={'published': 'Published Date', selected_metric: metric_names[selected_metric]},
+                     hover_data=['title'])
 
 # Update y-axis labels for engagement to display as percentages
 if selected_metric == 'engagement':
