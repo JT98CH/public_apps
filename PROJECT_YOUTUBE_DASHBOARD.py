@@ -61,12 +61,16 @@ st.title(f"YouTube Analytics for {selected_channel}")
 # Filter the DataFrame based on the selected channel, metric, and year
 filtered_df = df[(df['channel_name'] == selected_channel) & (df['year'] == selected_year)]
 
-# Create two line charts, one for videos and one for shorts, with hover labels
-fig_videos = px.line(videos_df, x='published', y=selected_metric, hover_data=[videos_df['title']],
+# Filter data for videos and shorts
+videos_df = filtered_df[filtered_df['short'] == 0]
+shorts_df = filtered_df[filtered_df['short'] == 1]
+
+# Create two line charts, one for videos and one for shorts, with data point labels
+fig_videos = px.line(videos_df, x='published', y=selected_metric, text=videos_df['title'],
                      title=f'Line Chart of {metric_names[selected_metric]} for Videos',
                      labels={'published': 'Published Date', selected_metric: metric_names[selected_metric]})
 
-fig_shorts = px.line(shorts_df, x='published', y=selected_metric, hover_data=[shorts_df['title']],
+fig_shorts = px.line(shorts_df, x='published', y=selected_metric, text=shorts_df['title'],
                      title=f'Line Chart of {metric_names[selected_metric]} for Shorts',
                      labels={'published': 'Published Date', selected_metric: metric_names[selected_metric]})
 
