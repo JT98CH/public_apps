@@ -67,12 +67,10 @@ shorts_df = filtered_df[filtered_df['short'] == 1]
 
 fig_videos = px.line(videos_df, x='published', y=selected_metric,
                      title=f'Line Chart of {metric_names[selected_metric]} for Videos',
-                     labels={'published': 'Published Date', selected_metric: metric_names[selected_metric]},
                      hover_data=['title'])
 
 fig_shorts = px.line(shorts_df, x='published', y=selected_metric,
                      title=f'Line Chart of {metric_names[selected_metric]} for Shorts',
-                     labels={'published': 'Published Date', selected_metric: metric_names[selected_metric]},
                      hover_data=['title'])
 
 # Update y-axis labels for engagement to display as percentages
