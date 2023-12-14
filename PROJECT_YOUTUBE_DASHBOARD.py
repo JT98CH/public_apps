@@ -52,7 +52,7 @@ This interactive dashboard allows you to explore YouTube channel statistics, inc
 
 The dashboard will display line charts for the selected metric, broken down into regular videos and shorts (if available). You can analyze trends and compare performance between videos and shorts.
 
-Enjoy exploring the YouTube analytics of your favorite channels!
+Enjoy exploring the YouTube analytics of my three favorite cooking YouTube channels!
 """)
 
 # Update the main title dynamically based on the selected channel
