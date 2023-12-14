@@ -27,10 +27,15 @@ def format_metric_value(value, metric):
 # Create a Streamlit app
 st.title("YouTube Analytics")
 
-# Sidebar to select channel name, metric, and year
-selected_channel = st.sidebar.selectbox("Select Channel Name", df['channel_name'].unique())
-selected_metric = st.sidebar.selectbox("Select Metric", ['view_count', 'like_count', 'comment_count', 'engagement'])
-selected_year = st.sidebar.slider("Select Year", min_value=df['year'].min(), max_value=df['year'].max())
+# Set default values for the filters
+default_channel = df['channel_name'].unique()[0]
+default_metric = 'view_count'
+default_year = df['year'].max()
+
+# Sidebar to select channel name, metric, and year with default values
+selected_channel = st.sidebar.selectbox("Select Channel Name", df['channel_name'].unique(), index=0, key='channel_selectbox')
+selected_metric = st.sidebar.selectbox("Select Metric", ['view_count', 'like_count', 'comment_count', 'engagement'], index=0, key='metric_selectbox')
+selected_year = st.sidebar.slider("Select Year", min_value=df['year'].min(), max_value=df['year'].max(), value=default_year, key='year_slider')
 
 # Filter the DataFrame based on the selected channel, metric, and year
 filtered_df = df[(df['channel_name'] == selected_channel) & (df['year'] == selected_year)]
