@@ -30,9 +30,30 @@ default_metric = 'view_count'
 default_year = df['year'].max()
 
 # Sidebar to select channel name, metric, and year with default values
+st.sidebar.title("YouTube Analytics Dashboard")
+st.sidebar.write("Welcome to the YouTube Analytics Dashboard! Use the filters below to explore YouTube channel statistics.")
 selected_channel = st.sidebar.selectbox("Select Channel Name", df['channel_name'].unique(), index=0, key='channel_selectbox')
+st.sidebar.write("Select a YouTube channel to analyze.")
 selected_metric = st.sidebar.selectbox("Select Metric", ['view_count', 'like_count', 'comment_count', 'engagement'], index=0, key='metric_selectbox')
+st.sidebar.write("Choose a metric to visualize.")
 selected_year = st.sidebar.slider("Select Year", min_value=df['year'].min(), max_value=df['year'].max(), value=default_year, key='year_slider')
+st.sidebar.write("Adjust the year for data analysis.")
+
+# Introduction and Purpose
+st.write("""
+# YouTube Analytics Dashboard
+
+This interactive dashboard allows you to explore YouTube channel statistics, including views, likes, comments, and engagement rate, for different channels and years. Use the filters on the sidebar to customize your analysis.
+
+## How to Use
+1. **Select Channel Name:** Choose a YouTube channel from the dropdown list in the sidebar.
+2. **Select Metric:** Select the metric you want to visualize (Views, Likes, Comments, or Engagement Rate).
+3. **Select Year:** Adjust the year slider to focus on data from a specific year.
+
+The dashboard will display line charts for the selected metric, broken down into regular videos and shorts (if available). You can analyze trends and compare performance between videos and shorts.
+
+Enjoy exploring the YouTube analytics of your favorite channels!
+""")
 
 # Update the main title dynamically based on the selected channel
 st.title(f"YouTube Analytics for {selected_channel}")
